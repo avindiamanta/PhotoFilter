@@ -140,8 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				28991A1C19EC346C00AA4FF1 /* LaunchScreen.xib */,
-				28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */,
 				28991A1719EC346C00AA4FF1 /* Main.storyboard */,
+				28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */,
 			);
 			name = View;
 			path = ..;

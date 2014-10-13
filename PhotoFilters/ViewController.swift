@@ -48,14 +48,15 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		self.presentViewController(alertController, animated: true, completion: nil)
 	}
 	
-	func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-		self.imageView.image = editingInfo[UIImagePickerControllerEditedImage] as? UIImage
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+		self.imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	func perpareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "SHOW_GALLERY") {
-			//segue.destinationViewController.
+			let destinationVC = segue.destinationViewController as GalleryViewController
+			destinationVC.delegate = self
 		}
 	}
 	

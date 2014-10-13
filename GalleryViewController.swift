@@ -12,7 +12,7 @@ protocol GalleryProtocol {
 	func didTapOnItem(image: UIImage)
 }
 
-class GalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GalleryProtocol {
+class GalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	@IBOutlet weak var collectionView: UICollectionView!
 	
@@ -21,6 +21,13 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+//		let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+//		
+//		let collectionViewLayout = UICollectionViewLayout()
+//		collectionViewLayout.collectionView?.bounds = CGRectMake(0, 0, appDelegate.window!.frame.width, appDelegate.window!.frame.height)
+//		self.collectionView.collectionViewLayout = UICollectionViewLayout()
+		
 		self.collectionView.dataSource = self
 		self.collectionView.delegate = self
 		
@@ -51,19 +58,9 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		println("Index Path: \(indexPath.row)")
+		println("Count: \(self.images.count)")
 		self.delegate?.didTapOnItem(self.images[indexPath.row])
-	}
-	
-	func didTapOnItem(image: UIImage) {
-		println("didTapOnPicture")
-		
-	}
-	
-	func perpareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if (segue.identifier == "SHOW_GALLERY") {
-			self.delegate = segue.destinationViewController
-		}
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
     /*
