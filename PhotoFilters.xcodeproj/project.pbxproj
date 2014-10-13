@@ -14,6 +14,11 @@
 		28991A1B19EC346C00AA4FF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28991A1A19EC346C00AA4FF1 /* Images.xcassets */; };
 		28991A1E19EC346C00AA4FF1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28991A1C19EC346C00AA4FF1 /* LaunchScreen.xib */; };
 		28991A2A19EC346C00AA4FF1 /* PhotoFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28991A2919EC346C00AA4FF1 /* PhotoFiltersTests.swift */; };
+		28991A3719EC3B9D00AA4FF1 /* testPhoto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28991A3619EC3B9D00AA4FF1 /* testPhoto.jpg */; };
+		28991A3919EC3C9100AA4FF1 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28991A3819EC3C9100AA4FF1 /* GalleryViewController.swift */; };
+		28991A4019EC41A200AA4FF1 /* photo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28991A3E19EC41A200AA4FF1 /* photo3.jpg */; };
+		28991A4119EC41A200AA4FF1 /* photo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28991A3F19EC41A200AA4FF1 /* photo2.jpg */; };
+		28991A4319EC422C00AA4FF1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		28991A2319EC346C00AA4FF1 /* PhotoFiltersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoFiltersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28991A2819EC346C00AA4FF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28991A2919EC346C00AA4FF1 /* PhotoFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFiltersTests.swift; sourceTree = "<group>"; };
+		28991A3619EC3B9D00AA4FF1 /* testPhoto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testPhoto.jpg; sourceTree = "<group>"; };
+		28991A3819EC3C9100AA4FF1 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		28991A3E19EC41A200AA4FF1 /* photo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo3.jpg; sourceTree = "<group>"; };
+		28991A3F19EC41A200AA4FF1 /* photo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo2.jpg; sourceTree = "<group>"; };
+		28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +103,9 @@
 		28991A0E19EC346C00AA4FF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				28991A3619EC3B9D00AA4FF1 /* testPhoto.jpg */,
+				28991A3E19EC41A200AA4FF1 /* photo3.jpg */,
+				28991A3F19EC41A200AA4FF1 /* photo2.jpg */,
 				28991A0F19EC346C00AA4FF1 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -127,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				28991A1C19EC346C00AA4FF1 /* LaunchScreen.xib */,
+				28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */,
 				28991A1719EC346C00AA4FF1 /* Main.storyboard */,
 			);
 			name = View;
@@ -137,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				28991A1519EC346C00AA4FF1 /* ViewController.swift */,
+				28991A3819EC3C9100AA4FF1 /* GalleryViewController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -222,8 +237,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28991A4019EC41A200AA4FF1 /* photo3.jpg in Resources */,
+				28991A4119EC41A200AA4FF1 /* photo2.jpg in Resources */,
 				28991A1919EC346C00AA4FF1 /* Main.storyboard in Resources */,
 				28991A1E19EC346C00AA4FF1 /* LaunchScreen.xib in Resources */,
+				28991A3719EC3B9D00AA4FF1 /* testPhoto.jpg in Resources */,
 				28991A1B19EC346C00AA4FF1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28991A4319EC422C00AA4FF1 /* CollectionViewCell.swift in Sources */,
 				28991A1619EC346C00AA4FF1 /* ViewController.swift in Sources */,
+				28991A3919EC3C9100AA4FF1 /* GalleryViewController.swift in Sources */,
 				28991A1419EC346C00AA4FF1 /* PhotoFilters.xcdatamodeld in Sources */,
 				28991A1119EC346C00AA4FF1 /* AppDelegate.swift in Sources */,
 			);
