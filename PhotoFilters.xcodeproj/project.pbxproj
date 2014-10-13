@@ -31,7 +31,7 @@
 		28991A0F19EC346C00AA4FF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28991A1019EC346C00AA4FF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28991A1319EC346C00AA4FF1 /* PhotoFilters.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoFilters.xcdatamodel; sourceTree = "<group>"; };
-		28991A1519EC346C00AA4FF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		28991A1519EC346C00AA4FF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = PhotoFilters/ViewController.swift; sourceTree = "<group>"; };
 		28991A1819EC346C00AA4FF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28991A1A19EC346C00AA4FF1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28991A1D19EC346C00AA4FF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -80,10 +80,10 @@
 			isa = PBXGroup;
 			children = (
 				28991A1019EC346C00AA4FF1 /* AppDelegate.swift */,
-				28991A1519EC346C00AA4FF1 /* ViewController.swift */,
-				28991A1719EC346C00AA4FF1 /* Main.storyboard */,
+				28991A3319EC347F00AA4FF1 /* Model */,
+				28991A3419EC348400AA4FF1 /* View */,
+				28991A3519EC348800AA4FF1 /* Controller */,
 				28991A1A19EC346C00AA4FF1 /* Images.xcassets */,
-				28991A1C19EC346C00AA4FF1 /* LaunchScreen.xib */,
 				28991A1219EC346C00AA4FF1 /* PhotoFilters.xcdatamodeld */,
 				28991A0E19EC346C00AA4FF1 /* Supporting Files */,
 			);
@@ -113,6 +113,33 @@
 				28991A2819EC346C00AA4FF1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28991A3319EC347F00AA4FF1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		28991A3419EC348400AA4FF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28991A1C19EC346C00AA4FF1 /* LaunchScreen.xib */,
+				28991A1719EC346C00AA4FF1 /* Main.storyboard */,
+			);
+			name = View;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		28991A3519EC348800AA4FF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				28991A1519EC346C00AA4FF1 /* ViewController.swift */,
+			);
+			name = Controller;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +273,7 @@
 				28991A1819EC346C00AA4FF1 /* Base */,
 			);
 			name = Main.storyboard;
+			path = PhotoFilters;
 			sourceTree = "<group>";
 		};
 		28991A1C19EC346C00AA4FF1 /* LaunchScreen.xib */ = {
@@ -254,6 +282,7 @@
 				28991A1D19EC346C00AA4FF1 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = PhotoFilters;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
