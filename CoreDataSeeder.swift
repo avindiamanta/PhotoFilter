@@ -32,9 +32,21 @@ class CoreDataSeeder {
 		
 		var photoEffectMono = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
 		photoEffectMono.name = "CIPhotoEffectMono"
-		
+	
 		var photoEffectNoir = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
 		photoEffectNoir.name = "CIPhotoEffectNoir"
+		
+		var colorInvert = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
+		colorInvert.name = "CIColorInvert"
+		
+		var colorBlend = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
+		colorBlend.name = "CIColorBlendMode"
+		
+		var colorMatrix = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
+		colorMatrix.name = "CIColorMatrix"
+		
+		var colorCube = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
+		colorCube.name = "CIColorCube"
 		
 		var error: NSError?
 		self.managedObjectContext.save(&error)

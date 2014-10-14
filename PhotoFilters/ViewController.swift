@@ -11,7 +11,7 @@ import CoreImage
 import CoreData
 import OpenGLES
 
-class ViewController: UIViewController, GalleryProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, GalleryProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 	
 	@IBOutlet weak var photoButton: UIButton!
 	@IBOutlet weak var imageViewtrailingConstraint: NSLayoutConstraint!
@@ -35,7 +35,8 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		var image = UIImage(named: "testPhoto.jpg")
+		self.filterCollectionView.dataSource = self
+		self.filterCollectionView.delegate = self
 		
 		// Setting up core image context
 		var options = [kCIContextWorkingColorSpace : NSNull()]
@@ -49,11 +50,14 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		self.filters = fetchFilters()
 		
 		self.createThumbnail()
-		//self.resetFilterThumbnails()
-		
-		self.filterCollectionView.dataSource = self
+		self.resetFilterThumbnails()
 		println(self.filters?.count)
 		// Do any additional setup after loading the view, typically from a nib.
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+		self.resetFilterThumbnails()
+		self.filterCollectionView.reloadData()
 	}
 	
 	func createThumbnail() {
@@ -64,12 +68,12 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		UIGraphicsEndImageContext()
 	}
 
-	func createFullSize() {
-		let size = CGSize(width: self.imageView.bounds.width, height: self.imageView.bounds.height)
-		UIGraphicsBeginImageContext(size)
-		self.imageView.image?.drawInRect(CGRectMake(0, 0, self.imageView.bounds.width, self.imageView.bounds.height))
-		self.originalThumbnail = UIGraphicsGetImageFromCurrentImageContext()
+	func createFullSize(image: UIImage) -> UIImage {
+		UIGraphicsBeginImageContext(self.imageView.image!.size)
+		image.drawInRect(CGRect(origin: self.imageView.bounds.origin, size: self.imageView.image!.size))
+		var largeImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
+		return largeImage
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -106,6 +110,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
 		self.imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+		createThumbnail()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
@@ -202,7 +207,12 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		self.navigationItem.rightBarButtonItem = nil
 	}
 	
-	
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		println(indexPath.row)
+		var filteredThumbnail = self.filterThumbnails![indexPath.row].filteredThumbnail
+		var bigImage = self.createFullSize(filteredThumbnail!)
+		self.imageView.image = bigImage
+	}
 
 }
 

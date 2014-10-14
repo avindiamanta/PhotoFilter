@@ -57,8 +57,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NmD-N7-rO5">
-                                <rect key="frame" x="31" y="20" width="540" height="522"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NmD-N7-rO5">
+                                <rect key="frame" x="31" y="72" width="540" height="470"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -74,7 +74,7 @@
                             <constraint firstItem="NmD-N7-rO5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="84" id="fhB-r2-PBb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NmD-N7-rO5" secondAttribute="bottom" constant="100" id="jgT-P1-A4o"/>
                             <constraint firstItem="N7J-6a-U26" firstAttribute="top" secondItem="fM7-VR-CkL" secondAttribute="bottom" constant="-150" id="mF8-g3-jGl"/>
-                            <constraint firstItem="NmD-N7-rO5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qUD-3E-Uwv"/>
+                            <constraint firstItem="NmD-N7-rO5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="qUD-3E-Uwv"/>
                             <constraint firstItem="fM7-VR-CkL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="vfj-oh-d4W"/>
                         </constraints>
                         <variation key="default">
