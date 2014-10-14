@@ -19,6 +19,10 @@
 		28991A4019EC41A200AA4FF1 /* photo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28991A3E19EC41A200AA4FF1 /* photo3.jpg */; };
 		28991A4119EC41A200AA4FF1 /* photo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28991A3F19EC41A200AA4FF1 /* photo2.jpg */; };
 		28991A4319EC422C00AA4FF1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */; };
+		28EA7F3819ED903F0046DFCC /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA7F3719ED903F0046DFCC /* FilterCollectionViewCell.swift */; };
+		28EA7F3A19ED91840046DFCC /* FilterThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA7F3919ED91840046DFCC /* FilterThumbnail.swift */; };
+		28EA7F3C19EDA04B0046DFCC /* CoreDataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA7F3B19EDA04B0046DFCC /* CoreDataSeeder.swift */; };
+		28EA7F4219EDA1A60046DFCC /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA7F4119EDA1A60046DFCC /* Filter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		28991A3E19EC41A200AA4FF1 /* photo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo3.jpg; sourceTree = "<group>"; };
 		28991A3F19EC41A200AA4FF1 /* photo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo2.jpg; sourceTree = "<group>"; };
 		28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		28EA7F3719ED903F0046DFCC /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		28EA7F3919ED91840046DFCC /* FilterThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterThumbnail.swift; sourceTree = "<group>"; };
+		28EA7F3B19EDA04B0046DFCC /* CoreDataSeeder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSeeder.swift; sourceTree = "<group>"; };
+		28EA7F4119EDA1A60046DFCC /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,7 @@
 				28991A3519EC348800AA4FF1 /* Controller */,
 				28991A1A19EC346C00AA4FF1 /* Images.xcassets */,
 				28991A1219EC346C00AA4FF1 /* PhotoFilters.xcdatamodeld */,
+				28EA7F4119EDA1A60046DFCC /* Filter.swift */,
 				28991A0E19EC346C00AA4FF1 /* Supporting Files */,
 			);
 			path = PhotoFilters;
@@ -131,6 +140,8 @@
 		28991A3319EC347F00AA4FF1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				28EA7F3919ED91840046DFCC /* FilterThumbnail.swift */,
+				28EA7F3B19EDA04B0046DFCC /* CoreDataSeeder.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -141,6 +152,7 @@
 			children = (
 				28991A1C19EC346C00AA4FF1 /* LaunchScreen.xib */,
 				28991A1719EC346C00AA4FF1 /* Main.storyboard */,
+				28EA7F3719ED903F0046DFCC /* FilterCollectionViewCell.swift */,
 				28991A4219EC422C00AA4FF1 /* CollectionViewCell.swift */,
 			);
 			name = View;
@@ -262,9 +274,13 @@
 			files = (
 				28991A4319EC422C00AA4FF1 /* CollectionViewCell.swift in Sources */,
 				28991A1619EC346C00AA4FF1 /* ViewController.swift in Sources */,
+				28EA7F3C19EDA04B0046DFCC /* CoreDataSeeder.swift in Sources */,
 				28991A3919EC3C9100AA4FF1 /* GalleryViewController.swift in Sources */,
 				28991A1419EC346C00AA4FF1 /* PhotoFilters.xcdatamodeld in Sources */,
+				28EA7F3819ED903F0046DFCC /* FilterCollectionViewCell.swift in Sources */,
 				28991A1119EC346C00AA4FF1 /* AppDelegate.swift in Sources */,
+				28EA7F4219EDA1A60046DFCC /* Filter.swift in Sources */,
+				28EA7F3A19ED91840046DFCC /* FilterThumbnail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +476,7 @@
 				28991A2F19EC346C00AA4FF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		28991A3019EC346C00AA4FF1 /* Build configuration list for PBXNativeTarget "PhotoFiltersTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +485,7 @@
 				28991A3219EC346C00AA4FF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

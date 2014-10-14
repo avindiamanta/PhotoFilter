@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GalleryProtocol {
+protocol GalleryProtocol : class {
 	func didTapOnItem(image: UIImage)
 }
 
@@ -17,7 +17,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 	@IBOutlet weak var collectionView: UICollectionView!
 	
 	var images = [UIImage]()
-	var delegate: GalleryProtocol?
+	weak var delegate: GalleryProtocol?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
