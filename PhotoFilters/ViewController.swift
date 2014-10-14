@@ -13,13 +13,14 @@ import OpenGLES
 
 class ViewController: UIViewController, GalleryProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource {
 	
+	@IBOutlet weak var photoButton: UIButton!
 	@IBOutlet weak var imageViewtrailingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
 	
 	@IBOutlet weak var filterCollectionBottomConstraint: NSLayoutConstraint!
 	
-	
+	var imageQueue = NSOperationQueue()
 	var context: CIContext?
 	
 	@IBOutlet weak var filterCollectionView: UICollectionView!
@@ -27,6 +28,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	var originalThumbnail: UIImage?
 
 	var filters = [Filter]?()
+	var filterThumbnails = [FilterThumbnail]?()
 	
 	@IBOutlet weak var imageView: UIImageView!
 	
@@ -34,8 +36,6 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		super.viewDidLoad()
 		
 		var image = UIImage(named: "testPhoto.jpg")
-		
-		self.filterCollectionView.dataSource = self
 		
 		// Setting up core image context
 		var options = [kCIContextWorkingColorSpace : NSNull()]
@@ -48,20 +48,30 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		seeder.seedCoreData()
 		self.filters = fetchFilters()
 		
-		self.generateThumbnail()
+		self.createThumbnail()
+		//self.resetFilterThumbnails()
 		
-		
+		self.filterCollectionView.dataSource = self
+		println(self.filters?.count)
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 	
-	func generateThumbnail() {
-			let size = CGSize(width: 100, height: 100)
-			UIGraphicsBeginImageContext(size)
-			self.imageView.image?.drawInRect(CGRectMake(0, 0, 100, 100))
-			self.originalThumbnail = UIGraphicsGetImageFromCurrentImageContext()
-			UIGraphicsEndImageContext()
+	func createThumbnail() {
+		let size = CGSize(width: 100, height: 100)
+		UIGraphicsBeginImageContext(size)
+		self.imageView.image?.drawInRect(CGRectMake(0, 0, 100, 100))
+		self.originalThumbnail = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
 	}
 
+	func createFullSize() {
+		let size = CGSize(width: self.imageView.bounds.width, height: self.imageView.bounds.height)
+		UIGraphicsBeginImageContext(size)
+		self.imageView.image?.drawInRect(CGRectMake(0, 0, self.imageView.bounds.width, self.imageView.bounds.height))
+		self.originalThumbnail = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+	}
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
@@ -109,18 +119,37 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	func didTapOnItem(image: UIImage) {
 		println("Tap on item called")
 		self.imageView.image = image
+		self.createThumbnail()
+		self.resetFilterThumbnails()
+		self.filterCollectionView.reloadData()
+		
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 5
+		if self.filterThumbnails != nil {
+			return self.filterThumbnails!.count
+		} else {
+			return 0
+		}
 	}
 	
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = self.filterCollectionView.dequeueReusableCellWithReuseIdentifier("FILTER_CELL", forIndexPath: indexPath) as FilterCollectionViewCell
-		//cell.filterImageView.image =
+		var filterThumbnail = self.filterThumbnails![indexPath.row]
+		if filterThumbnail.filteredThumbnail != nil {
+			cell.filterImageView.image = filterThumbnail.filteredThumbnail
+		} else {
+			cell.filterImageView.image = filterThumbnail.originalThumbnail
+			filterThumbnail.generateThumbnail({ (image) -> Void in
+				if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? FilterCollectionViewCell {
+					cell.filterImageView.image = image
+				}
+			})
+		}
+		
 		return cell
 	}
-	
+
 	func fetchFilters() -> [Filter]? {
 		var fetchRequest = NSFetchRequest(entityName: "Filter")
 		var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -140,9 +169,11 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		var newFilters = [FilterThumbnail]()
 		for var index = 0; index < self.filters!.count; index++ {
 			var filter = self.filters![index]
-			//var filterName =
-			//var thumbnail = FilterThumbnail(name: <#String#>, thumbNail: <#UIImage#>, queue: <#NSOperationQueue#>, context: <#CIContext#>)
+			var filterName = filter.name
+			var thumbnail = FilterThumbnail(name: filterName, thumbNail: self.originalThumbnail!, queue: self.imageQueue, context: self.context!)
+			newFilters.append(thumbnail)
 		}
+		self.filterThumbnails = newFilters
 	}
 	
 	func enterFilterMode() {
@@ -153,7 +184,25 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		UIView.animateWithDuration(0.4, animations: { () -> Void in
 			self.view.layoutIfNeeded()
 		})
+		
+		var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "exitFilterMode")
+		self.navigationItem.rightBarButtonItem = doneButton
+		self.photoButton.hidden = true
 	}
+	
+	func exitFilterMode() {
+		self.imageViewtrailingConstraint.constant = self.imageViewtrailingConstraint.constant * 1/3
+		self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant * 1/3
+		self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant * 1/3
+		self.filterCollectionBottomConstraint.constant = -200
+		UIView.animateWithDuration(0.4, animations: { () -> Void in
+			self.view.layoutIfNeeded()
+		})
+		self.photoButton.hidden = false
+		self.navigationItem.rightBarButtonItem = nil
+	}
+	
+	
 
 }
 
