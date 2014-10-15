@@ -10,8 +10,9 @@ import UIKit
 import CoreImage
 import CoreData
 import OpenGLES
+import Photos
 
-class ViewController: UIViewController, GalleryProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 	
 	@IBOutlet weak var photoButton: UIButton!
 	@IBOutlet weak var imageViewtrailingConstraint: NSLayoutConstraint!
@@ -27,7 +28,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	
 	var originalThumbnail: UIImage?
 
-	var filters = [Filter]?()
+	var filters = [Filter]()
 	var filterThumbnails = [FilterThumbnail]?()
 	
 	@IBOutlet weak var imageView: UIImageView!
@@ -45,13 +46,15 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		
 		var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 		var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
-		
-		seeder.seedCoreData()
-		self.filters = fetchFilters()
+		self.filters = fetchFilters()!
+		if self.filters.isEmpty {
+			seeder.seedCoreData()
+			self.filters = fetchFilters()!
+		}
 		
 		self.createThumbnail()
 		self.resetFilterThumbnails()
-		println(self.filters?.count)
+		println(self.filters.count)
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 	
@@ -101,10 +104,14 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		let filterAction = UIAlertAction(title: "Filters", style: UIAlertActionStyle.Default) { (action) -> Void in
 			self.enterFilterMode()
 		}
+		let phtotsAction = UIAlertAction(title: "Photos", style: UIAlertActionStyle.Default) { (action) -> Void in
+			self.performSegueWithIdentifier("SHOW_PHOTO", sender: self)
+		}
 		alertController.addAction(galleryAction)
 		alertController.addAction(cancelAction)
 		alertController.addAction(cameraAction)
 		alertController.addAction(filterAction)
+		alertController.addAction(phtotsAction)
 		self.presentViewController(alertController, animated: true, completion: nil)
 	}
 	
@@ -116,8 +123,11 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "SHOW_GALLERY") {
-			let destinationVC = segue.destinationViewController as GalleryViewController
-			destinationVC.delegate = self
+			let destinationGalleryVC = segue.destinationViewController as GalleryViewController
+			destinationGalleryVC.delegate = self
+		} else if (segue.identifier == "SHOW_PHOTO") {
+			let destinationPhotoVC = segue.destinationViewController as PhotosViewController
+			destinationPhotoVC.delegate = self
 		}
 	}
 	
@@ -172,8 +182,8 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	
 	func resetFilterThumbnails () {
 		var newFilters = [FilterThumbnail]()
-		for var index = 0; index < self.filters!.count; index++ {
-			var filter = self.filters![index]
+		for var index = 0; index < self.filters.count; index++ {
+			var filter = self.filters[index]
 			var filterName = filter.name
 			var thumbnail = FilterThumbnail(name: filterName, thumbNail: self.originalThumbnail!, queue: self.imageQueue, context: self.context!)
 			newFilters.append(thumbnail)
@@ -185,7 +195,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		self.imageViewtrailingConstraint.constant = self.imageViewtrailingConstraint.constant * 3
 		self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant * 3
 		self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant * 3
-		self.filterCollectionBottomConstraint.constant = 10
+		self.filterCollectionBottomConstraint.constant = 0
 		UIView.animateWithDuration(0.4, animations: { () -> Void in
 			self.view.layoutIfNeeded()
 		})
@@ -208,10 +218,13 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		println(indexPath.row)
 		var filteredThumbnail = self.filterThumbnails![indexPath.row].filteredThumbnail
 		var bigImage = self.createFullSize(filteredThumbnail!)
 		self.imageView.image = bigImage
+	}
+	
+	func returnPhoto(asset: PHAsset) {
+		
 	}
 
 }
