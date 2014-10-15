@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fM7-VR-CkL">
-                                <rect key="frame" x="0.0" y="650" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="630" width="600" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="C47-N3-BCo"/>
                                 </constraints>
@@ -67,13 +67,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="fM7-VR-CkL" secondAttribute="trailing" constant="-16" id="BeL-Kw-bcr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NmD-N7-rO5" secondAttribute="trailing" constant="5" id="CbO-Fe-Z7R"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="N7J-6a-U26" secondAttribute="bottom" constant="20" id="FAh-VY-CSw"/>
-                            <constraint firstItem="N7J-6a-U26" firstAttribute="top" secondItem="NmD-N7-rO5" secondAttribute="bottom" constant="8" id="VWd-c3-aZl"/>
+                            <constraint firstAttribute="centerX" secondItem="N7J-6a-U26" secondAttribute="centerX" id="HzQ-CS-XMp"/>
                             <constraint firstItem="NmD-N7-rO5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="XDq-li-VsM"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="NmD-N7-rO5" secondAttribute="bottom" constant="58" id="Zsi-s8-ple"/>
                             <constraint firstItem="NmD-N7-rO5" firstAttribute="centerX" secondItem="N7J-6a-U26" secondAttribute="centerX" id="cUS-gJ-zhZ"/>
                             <constraint firstItem="NmD-N7-rO5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="80" id="dEy-Rm-HKA"/>
                             <constraint firstItem="NmD-N7-rO5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="84" id="fhB-r2-PBb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NmD-N7-rO5" secondAttribute="bottom" constant="100" id="jgT-P1-A4o"/>
-                            <constraint firstItem="N7J-6a-U26" firstAttribute="top" secondItem="fM7-VR-CkL" secondAttribute="bottom" constant="-200" id="mF8-g3-jGl"/>
+                            <constraint firstItem="N7J-6a-U26" firstAttribute="bottom" secondItem="fM7-VR-CkL" secondAttribute="bottom" constant="-150" id="mF8-g3-jGl"/>
                             <constraint firstItem="NmD-N7-rO5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="qUD-3E-Uwv"/>
                             <constraint firstItem="fM7-VR-CkL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="vfj-oh-d4W"/>
                         </constraints>
@@ -91,7 +92,7 @@
                         <outlet property="filterCollectionBottomConstraint" destination="mF8-g3-jGl" id="6Yp-Os-L6F"/>
                         <outlet property="filterCollectionView" destination="fM7-VR-CkL" id="OIL-kX-I5V"/>
                         <outlet property="imageView" destination="NmD-N7-rO5" id="PFW-z6-Zjc"/>
-                        <outlet property="imageViewBottomConstraint" destination="VWd-c3-aZl" id="pSC-vM-11U"/>
+                        <outlet property="imageViewBottomConstraint" destination="Zsi-s8-ple" id="n2b-1W-xOG"/>
                         <outlet property="imageViewLeadingConstraint" destination="XDq-li-VsM" id="Noo-rn-kHK"/>
                         <outlet property="imageViewtrailingConstraint" destination="CbO-Fe-Z7R" id="nPn-8D-BZn"/>
                         <outlet property="photoButton" destination="N7J-6a-U26" id="o13-wC-yXk"/>

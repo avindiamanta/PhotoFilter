@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 protocol MyPhotosProtocol: class {
-	func returnPhoto(asset: PHAsset)
+	func returnPhoto(image: UIImage)
 }
 
 class PhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -21,6 +21,8 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 	var assetCollection: PHAssetCollection!
 	var imageManager: PHCachingImageManager!
 	var assetCellSize: CGSize!
+	
+	var displayImageSize: CGSize!
 	
 	weak var delegate: MyPhotosProtocol?
 	
@@ -62,6 +64,10 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		self.delegate?.returnPhoto(self.assetFetchResult[indexPath.row] as PHAsset)
+		self.imageManager.requestImageForAsset(self.assetFetchResult[indexPath.row] as PHAsset, targetSize: self.assetCellSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (image, info) -> Void in
+				self.delegate!.returnPhoto(image)
+			}
+		self.dismissViewControllerAnimated(true, completion: nil)	
 	}
 }
+

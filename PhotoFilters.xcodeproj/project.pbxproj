@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		283953E419EED3F200EC4CA4 /* No_Image_Available.png in Resources */ = {isa = PBXBuildFile; fileRef = 283953E319EED3F200EC4CA4 /* No_Image_Available.png */; };
 		283953E619EEF25500EC4CA4 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283953E519EEF25500EC4CA4 /* PhotoCollectionViewCell.swift */; };
 		283953E819EEF2B000EC4CA4 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283953E719EEF2B000EC4CA4 /* PhotosViewController.swift */; };
 		28991A1119EC346C00AA4FF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28991A1019EC346C00AA4FF1 /* AppDelegate.swift */; };
@@ -39,7 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		283953E319EED3F200EC4CA4 /* No_Image_Available.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = No_Image_Available.png; path = ../No_Image_Available.png; sourceTree = "<group>"; };
 		283953E519EEF25500EC4CA4 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		283953E719EEF2B000EC4CA4 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		28991A0B19EC346C00AA4FF1 /* PhotoFilters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoFilters.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				28991A3619EC3B9D00AA4FF1 /* testPhoto.jpg */,
-				283953E319EED3F200EC4CA4 /* No_Image_Available.png */,
 				28991A3E19EC41A200AA4FF1 /* photo3.jpg */,
 				28991A3F19EC41A200AA4FF1 /* photo2.jpg */,
 				28991A0F19EC346C00AA4FF1 /* Info.plist */,
@@ -263,7 +260,6 @@
 				28991A1919EC346C00AA4FF1 /* Main.storyboard in Resources */,
 				28991A1E19EC346C00AA4FF1 /* LaunchScreen.xib in Resources */,
 				28991A3719EC3B9D00AA4FF1 /* testPhoto.jpg in Resources */,
-				283953E419EED3F200EC4CA4 /* No_Image_Available.png in Resources */,
 				28991A1B19EC346C00AA4FF1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

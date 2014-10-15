@@ -76,6 +76,7 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 		image.drawInRect(CGRect(origin: self.imageView.bounds.origin, size: self.imageView.image!.size))
 		var largeImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
+		//self.imageView.
 		return largeImage
 	}
 	
@@ -128,6 +129,7 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 		} else if (segue.identifier == "SHOW_PHOTO") {
 			let destinationPhotoVC = segue.destinationViewController as PhotosViewController
 			destinationPhotoVC.delegate = self
+			//destinationPhotoVC.displayImageSize = self.imageView.image!.size
 		}
 	}
 	
@@ -209,7 +211,7 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 		self.imageViewtrailingConstraint.constant = self.imageViewtrailingConstraint.constant * 1/3
 		self.imageViewLeadingConstraint.constant = self.imageViewLeadingConstraint.constant * 1/3
 		self.imageViewBottomConstraint.constant = self.imageViewBottomConstraint.constant * 1/3
-		self.filterCollectionBottomConstraint.constant = -200
+		self.filterCollectionBottomConstraint.constant = -400
 		UIView.animateWithDuration(0.4, animations: { () -> Void in
 			self.view.layoutIfNeeded()
 		})
@@ -223,9 +225,11 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 		self.imageView.image = bigImage
 	}
 	
-	func returnPhoto(asset: PHAsset) {
-		
+	func returnPhoto(image: UIImage) {
+		self.imageView.image = image
+		self.createThumbnail()
+		self.resetFilterThumbnails()
+		self.filterCollectionView.reloadData()
 	}
-
 }
 
