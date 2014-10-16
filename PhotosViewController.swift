@@ -22,6 +22,8 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 	var imageManager: PHCachingImageManager!
 	var assetCellSize: CGSize!
 	
+	var flowLayout: UICollectionViewFlowLayout!
+	
 	var displayImageSize: CGSize!
 	
 	weak var delegate: MyPhotosProtocol?
@@ -40,6 +42,11 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 		
 		var cellSize = flowLayout.itemSize
 		self.assetCellSize = CGSizeMake(cellSize.width, cellSize.height)
+		
+		var pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchCollectionView:")
+		self.colectionView.addGestureRecognizer(pinchGesture)
+		
+		self.flowLayout = self.colectionView.collectionViewLayout as UICollectionViewFlowLayout
 		
     }
 	
@@ -68,6 +75,23 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 				self.delegate!.returnPhoto(image)
 			}
 		self.dismissViewControllerAnimated(true, completion: nil)	
+	}
+	
+	func pinchCollectionView(gestureRecognizer: UIPinchGestureRecognizer) {
+		if gestureRecognizer.state == UIGestureRecognizerState.Ended {
+			self.colectionView.performBatchUpdates({ () -> Void in
+				var currentSize = self.flowLayout.itemSize
+				if gestureRecognizer.velocity < 0 {
+					if currentSize.width < self.colectionView.bounds.width {
+						self.flowLayout.itemSize = CGSize(width: currentSize.width * 2, height: currentSize.height * 2)
+					}
+				} else {
+					if currentSize.width > 25.0 {
+						self.flowLayout.itemSize = CGSize(width: currentSize.width * 1/2, height: currentSize.height * 1/2)
+					}
+				}
+				}, completion: nil)
+		}
 	}
 }
 

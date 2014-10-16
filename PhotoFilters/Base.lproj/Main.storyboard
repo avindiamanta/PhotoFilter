@@ -195,13 +195,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EeY-QB-mAX">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EeY-QB-mAX">
                                                     <rect key="frame" x="0.0" y="1" width="100" height="100"/>
                                                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="EeY-QB-mAX" firstAttribute="top" secondItem="Jx6-u8-rLG" secondAttribute="topMargin" constant="-7" id="0L2-TL-KhP"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="EeY-QB-mAX" secondAttribute="trailing" constant="-8" id="0ZF-3m-e9C"/>
+                                            <constraint firstItem="EeY-QB-mAX" firstAttribute="leading" secondItem="Jx6-u8-rLG" secondAttribute="leadingMargin" constant="-8" id="DGV-iJ-qIC"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="EeY-QB-mAX" secondAttribute="bottom" constant="-9" id="mcb-qK-OYB"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="EeY-QB-mAX" id="HbE-RX-r2u"/>
                                         </connections>
@@ -258,12 +264,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VKa-Tt-PmX">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VKa-Tt-PmX">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="VKa-Tt-PmX" firstAttribute="leading" secondItem="6Qg-aM-tUN" secondAttribute="leadingMargin" constant="-8" id="2iS-Ol-hAQ"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="VKa-Tt-PmX" secondAttribute="bottom" constant="-8" id="Dp8-KD-rBE"/>
+                                            <constraint firstItem="VKa-Tt-PmX" firstAttribute="top" secondItem="6Qg-aM-tUN" secondAttribute="topMargin" constant="-8" id="GAw-3H-iQa"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="VKa-Tt-PmX" secondAttribute="trailing" constant="-8" id="lMR-Mq-ZHj"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="VKa-Tt-PmX" id="5lF-gY-Fjg"/>
                                         </connections>
@@ -272,6 +284,7 @@
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Q3T-QK-t0X">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>
