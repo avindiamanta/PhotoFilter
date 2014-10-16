@@ -117,20 +117,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uu-bV-Noa">
+                                <rect key="frame" x="262" y="550" width="77" height="30"/>
+                                <state key="normal" title="Take Photo"/>
+                                <connections>
+                                    <action selector="capturePressed:" destination="WPd-4j-tg3" eventType="touchUpInside" id="fGq-RV-ZYH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyx-Hx-yum">
+                                <rect key="frame" x="21" y="467" width="49" height="30"/>
+                                <state key="normal" title="Accept">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="acceptButtonPressed:" destination="WPd-4j-tg3" eventType="touchUpInside" id="sys-3g-vOC"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qMy-xD-nzW">
-                                <rect key="frame" x="21" y="430" width="100" height="150"/>
+                                <rect key="frame" x="21" y="505" width="50" height="75"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="6LS-hO-vc9"/>
-                                    <constraint firstAttribute="height" constant="150" id="em0-9D-dtw"/>
+                                    <constraint firstAttribute="width" constant="50" id="6LS-hO-vc9"/>
+                                    <constraint firstAttribute="height" constant="75" id="em0-9D-dtw"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FuE-iz-87A" firstAttribute="top" secondItem="6uu-bV-Noa" secondAttribute="bottom" constant="20" id="1kW-vz-XNr"/>
                             <constraint firstItem="FuE-iz-87A" firstAttribute="top" secondItem="qMy-xD-nzW" secondAttribute="bottom" constant="20" id="ND3-b1-cWg"/>
+                            <constraint firstAttribute="centerX" secondItem="qMy-xD-nzW" secondAttribute="centerX" id="V8z-25-MP9"/>
+                            <constraint firstItem="qMy-xD-nzW" firstAttribute="top" secondItem="Wyx-Hx-yum" secondAttribute="bottom" constant="8" id="d4F-dP-Hmf"/>
                             <constraint firstItem="qMy-xD-nzW" firstAttribute="leading" secondItem="uIa-xx-qkw" secondAttribute="leadingMargin" constant="5" id="fYY-ke-zND"/>
+                            <constraint firstAttribute="centerX" secondItem="6uu-bV-Noa" secondAttribute="centerX" id="kmo-3V-rgY"/>
+                            <constraint firstItem="qMy-xD-nzW" firstAttribute="leading" secondItem="Wyx-Hx-yum" secondAttribute="leading" id="pTR-M5-YNb"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="V8z-25-MP9"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="acceptPhotoButton" destination="Wyx-Hx-yum" id="wIW-gp-0oH"/>
+                        <outlet property="capturePreviewImageView" destination="qMy-xD-nzW" id="tNp-cY-z7R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Amc-jD-m8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

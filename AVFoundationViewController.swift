@@ -16,6 +16,11 @@ import QuartzCore
 class AVFoundationCameraViewController: UIViewController {
 	
 	@IBOutlet weak var capturePreviewImageView: UIImageView!
+	@IBOutlet weak var acceptPhotoButton: UIButton!
+	
+	var previewLayerContainerView: UIView!
+	var previewTopConstraint: NSLayoutConstraint!
+	var previewLeadingConstraint: NSLayoutConstraint!
 	
 	var delegate: GalleryProtocol?
 	
@@ -24,11 +29,29 @@ class AVFoundationCameraViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.acceptPhotoButton.hidden = true
+		
 		var captureSession = AVCaptureSession()
 		captureSession.sessionPreset = AVCaptureSessionPresetPhoto
 		var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
 		previewLayer.frame = CGRectMake(0, 64, self.view.frame.size.width, CGFloat(self.view.frame.size.height * 0.6))
+		
 		self.view.layer.addSublayer(previewLayer)
+		
+		
+		
+/*		Below is the failed attempt to get constraints on the preview layer
+		
+		
+		let kContainerXPosition = (self.view.bounds.origin.x + ((self.view.bounds.width/2) - (previewLayer.bounds.width / 2)))
+		let kContainerYPosition = (self.view.bounds.origin.y + ((self.view.bounds.height/2) - (previewLayer.bounds.height / 2)))
+		self.previewLayerContainerView = UIView(frame: CGRectMake(kContainerXPosition , kContainerYPosition, previewLayer.bounds.width, previewLayer.bounds.height))
+		self.previewTopConstraint = NSLayoutConstraint(item: self.previewLayerContainerView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: kContainerXPosition)
+		self.previewLeadingConstraint = NSLayoutConstraint(item: self.previewLayerContainerView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: kContainerYPosition)
+		self.previewLayerContainerView.addConstraint(self.previewTopConstraint)
+		self.previewLayerContainerView.addConstraint(self.previewLeadingConstraint)
+		self.view.addSubview(self.previewLayerContainerView)
+*/
 		
 		var device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
 		var error : NSError?
@@ -41,6 +64,8 @@ class AVFoundationCameraViewController: UIViewController {
 		self.stillImageOutput.outputSettings = outputSettings
 		captureSession.addOutput(self.stillImageOutput)
 		captureSession.startRunning()
+		
+		
 		// Do any additional setup after loading the view.
 	}
 	
@@ -73,9 +98,15 @@ class AVFoundationCameraViewController: UIViewController {
 			var image = UIImage(data: data)
 			self.capturePreviewImageView.image = image
 			println(image.size)
+			self.acceptPhotoButton.hidden = false
 		})
 		
 		
 	}
 	
+	@IBAction func acceptButtonPressed(sender: AnyObject) {
+		self.delegate?.didTapOnItem(self.capturePreviewImageView.image!)
+		self.dismissViewControllerAnimated(true, completion: nil)
+		
+	}
 }

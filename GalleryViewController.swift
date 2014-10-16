@@ -67,7 +67,6 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		println("Count: \(self.images.count)")
 		self.delegate?.didTapOnItem(self.images[indexPath.row])
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
