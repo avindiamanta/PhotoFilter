@@ -108,11 +108,15 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 		let phtotsAction = UIAlertAction(title: "Photos", style: UIAlertActionStyle.Default) { (action) -> Void in
 			self.performSegueWithIdentifier("SHOW_PHOTO", sender: self)
 		}
+		let takePhotoAction = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
+			self.performSegueWithIdentifier("SHOW_CAMERA", sender: self)
+		}
 		alertController.addAction(galleryAction)
 		alertController.addAction(cancelAction)
 		alertController.addAction(cameraAction)
-		alertController.addAction(filterAction)
 		alertController.addAction(phtotsAction)
+		alertController.addAction(takePhotoAction)
+		alertController.addAction(filterAction)
 		self.presentViewController(alertController, animated: true, completion: nil)
 	}
 	
@@ -129,7 +133,9 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 		} else if (segue.identifier == "SHOW_PHOTO") {
 			let destinationPhotoVC = segue.destinationViewController as PhotosViewController
 			destinationPhotoVC.delegate = self
-			//destinationPhotoVC.displayImageSize = self.imageView.image!.size
+		} else if (segue.identifier == "SHOW_CAMERA") {
+			let destinationCameraVC = segue.destinationViewController as AVFoundationCameraViewController
+			destinationCameraVC.delegate = self
 		}
 	}
 	

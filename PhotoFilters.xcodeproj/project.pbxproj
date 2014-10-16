@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2832DE2019F0631A0019D9A6 /* AVFoundationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832DE1F19F0631A0019D9A6 /* AVFoundationViewController.swift */; };
 		283953E619EEF25500EC4CA4 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283953E519EEF25500EC4CA4 /* PhotoCollectionViewCell.swift */; };
 		283953E819EEF2B000EC4CA4 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283953E719EEF2B000EC4CA4 /* PhotosViewController.swift */; };
 		28991A1119EC346C00AA4FF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28991A1019EC346C00AA4FF1 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2832DE1F19F0631A0019D9A6 /* AVFoundationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFoundationViewController.swift; sourceTree = "<group>"; };
 		283953E519EEF25500EC4CA4 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		283953E719EEF2B000EC4CA4 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		28991A0B19EC346C00AA4FF1 /* PhotoFilters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoFilters.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				28991A1519EC346C00AA4FF1 /* ViewController.swift */,
 				28991A3819EC3C9100AA4FF1 /* GalleryViewController.swift */,
 				283953E719EEF2B000EC4CA4 /* PhotosViewController.swift */,
+				2832DE1F19F0631A0019D9A6 /* AVFoundationViewController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -286,6 +289,7 @@
 				28991A3919EC3C9100AA4FF1 /* GalleryViewController.swift in Sources */,
 				28991A1419EC346C00AA4FF1 /* PhotoFilters.xcdatamodeld in Sources */,
 				28EA7F3819ED903F0046DFCC /* FilterCollectionViewCell.swift in Sources */,
+				2832DE2019F0631A0019D9A6 /* AVFoundationViewController.swift in Sources */,
 				28991A1119EC346C00AA4FF1 /* AppDelegate.swift in Sources */,
 				28EA7F4219EDA1A60046DFCC /* Filter.swift in Sources */,
 				28EA7F3A19ED91840046DFCC /* FilterThumbnail.swift in Sources */,

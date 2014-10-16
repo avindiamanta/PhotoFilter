@@ -98,11 +98,43 @@
                         <outlet property="photoButton" destination="N7J-6a-U26" id="o13-wC-yXk"/>
                         <segue destination="hfR-Ir-OU1" kind="presentation" identifier="SHOW_GALLERY" id="Rw2-8J-9X1"/>
                         <segue destination="JAh-Ir-i9h" kind="presentation" identifier="SHOW_PHOTO" id="R8c-W4-yZq"/>
+                        <segue destination="WPd-4j-tg3" kind="presentation" identifier="SHOW_CAMERA" id="H0k-LA-yyg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="989" y="136"/>
+        </scene>
+        <!--Foundation Camera View Controller-->
+        <scene sceneID="jde-oj-4fV">
+            <objects>
+                <viewController id="WPd-4j-tg3" customClass="AVFoundationCameraViewController" customModule="PhotoFilters" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iMe-wp-vXs"/>
+                        <viewControllerLayoutGuide type="bottom" id="FuE-iz-87A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uIa-xx-qkw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qMy-xD-nzW">
+                                <rect key="frame" x="21" y="430" width="100" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="6LS-hO-vc9"/>
+                                    <constraint firstAttribute="height" constant="150" id="em0-9D-dtw"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FuE-iz-87A" firstAttribute="top" secondItem="qMy-xD-nzW" secondAttribute="bottom" constant="20" id="ND3-b1-cWg"/>
+                            <constraint firstItem="qMy-xD-nzW" firstAttribute="leading" secondItem="uIa-xx-qkw" secondAttribute="leadingMargin" constant="5" id="fYY-ke-zND"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Amc-jD-m8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1654" y="819"/>
         </scene>
         <!--Gallery View Controller-->
         <scene sceneID="qxm-9J-oCC">
