@@ -19,6 +19,8 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 	var images = [UIImage]()
 	weak var delegate: GalleryProtocol?
 	
+	var flowLayout: UICollectionViewFlowLayout!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -35,9 +37,16 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 		var image2 = UIImage(named: "photo2.jpg")
 		var image3 = UIImage(named: "photo3.jpg")
 		
-		self.images.append(image1)
-		self.images.append(image2)
-		self.images.append(image3)
+		for (var i = 0; i < 10; i++) {
+			self.images.append(image1)
+			self.images.append(image2)
+			self.images.append(image3)
+		}
+		
+		self.flowLayout = self.collectionView.collectionViewLayout as UICollectionViewFlowLayout
+		
+		var pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchCollectionView:")
+		self.collectionView.addGestureRecognizer(pinchGesture)
 		
         // Do any additional setup after loading the view.
     }
@@ -63,14 +72,20 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	func pinchCollectionView(gestureRecognizer: UIPinchGestureRecognizer) {
+		if gestureRecognizer.state == UIGestureRecognizerState.Ended {
+			self.collectionView.performBatchUpdates({ () -> Void in
+				var currentSize = self.flowLayout.itemSize
+				if gestureRecognizer.velocity < 0 {
+						if currentSize.width < self.collectionView.bounds.width {
+						self.flowLayout.itemSize = CGSize(width: currentSize.width * 2, height: currentSize.height * 2)
+					}
+				} else {
+					if currentSize.width > 25.0 {
+						self.flowLayout.itemSize = CGSize(width: currentSize.width * 1/2, height: currentSize.height * 1/2)
+					}
+				}
+			}, completion: nil)
+		}
+	}
 }
