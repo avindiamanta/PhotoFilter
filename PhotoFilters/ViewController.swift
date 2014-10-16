@@ -12,7 +12,7 @@ import CoreData
 import OpenGLES
 import Photos
 
-class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, GalleryProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 	
 	@IBOutlet weak var photoButton: UIButton!
 	@IBOutlet weak var imageViewtrailingConstraint: NSLayoutConstraint!
@@ -23,6 +23,8 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 	
 	var imageQueue = NSOperationQueue()
 	var context: CIContext?
+	
+	var mainImage: UIImage?
 	
 	@IBOutlet weak var filterCollectionView: UICollectionView!
 	
@@ -76,7 +78,6 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 		image.drawInRect(CGRect(origin: self.imageView.bounds.origin, size: self.imageView.image!.size))
 		var largeImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
-		//self.imageView.
 		return largeImage
 	}
 	
@@ -121,7 +122,8 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 	}
 	
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-		self.imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+		self.mainImage = info[UIImagePickerControllerEditedImage] as? UIImage
+		self.imageView.image = self.mainImage
 		createThumbnail()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
@@ -140,8 +142,8 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 	}
 	
 	func didTapOnItem(image: UIImage) {
-		println("Tap on item called")
 		self.imageView.image = image
+		self.mainImage = image
 		self.createThumbnail()
 		self.resetFilterThumbnails()
 		self.filterCollectionView.reloadData()
@@ -226,16 +228,19 @@ class ViewController: UIViewController, GalleryProtocol, MyPhotosProtocol, UINav
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		var filteredThumbnail = self.filterThumbnails![indexPath.row].filteredThumbnail
-		var bigImage = self.createFullSize(filteredThumbnail!)
-		self.imageView.image = bigImage
+		var filteredThumbnail = self.filterThumbnails![indexPath.row]
+		var bigImage = FilteredMainImage(name: filteredThumbnail.filterName, original: self.mainImage!, queue: self.imageQueue, context: self.context!, homeVC: self)
+		bigImage.generateImage({ (image) -> Void in
+			self.imageView.image = image
+		})
 	}
 	
-	func returnPhoto(image: UIImage) {
-		self.imageView.image = image
-		self.createThumbnail()
-		self.resetFilterThumbnails()
-		self.filterCollectionView.reloadData()
-	}
+//	func returnPhoto(image: UIImage) {
+//		self.imageView.image = image
+//		self.mainImage = image
+//		self.createThumbnail()
+//		self.resetFilterThumbnails()
+//		self.filterCollectionView.reloadData()
+//	}
 }
 

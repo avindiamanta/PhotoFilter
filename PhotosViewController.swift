@@ -26,7 +26,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 	
 	var displayImageSize: CGSize!
 	
-	weak var delegate: MyPhotosProtocol?
+	weak var delegate: GalleryProtocol?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +72,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 		self.imageManager.requestImageForAsset(self.assetFetchResult[indexPath.row] as PHAsset, targetSize: self.assetCellSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (image, info) -> Void in
-				self.delegate!.returnPhoto(image)
+				self.delegate!.didTapOnItem(image)
 			}
 		self.dismissViewControllerAnimated(true, completion: nil)	
 	}
