@@ -32,6 +32,11 @@ class FilteredMainImage {
 		self.imageQueue?.addOperationWithBlock({ () -> Void in
 			// Setting up the filter with a CIImage
 			var image = CIImage(image: self.originalImage)
+			
+			if self.originalImage.imageOrientation == UIImageOrientation.Right {
+				image = image.imageByApplyingOrientation(6)
+			}
+			
 			var imageFilter = CIFilter(name: self.filterName)
 			imageFilter.setDefaults()
 			imageFilter.setValue(image, forKey: kCIInputImageKey)
