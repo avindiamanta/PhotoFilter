@@ -14,6 +14,14 @@ import Photos
 import Social
 import Accounts
 
+/*
+*	Finished 2.5 of the three challenges. The twitter sunctionality is up and running on my version
+*	and we got the save function working on Matt's. We tried to complete the third challenge but could
+*	not get the new CIFilter initializer to work with the Dictionary parameter. We changed our CoreData
+*	entity to hold new optional parameters but were unable to pass them in to get the new filter to
+*	work.
+*/
+
 class ViewController: UIViewController, GalleryProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 	
 	@IBOutlet weak var photoButton: UIButton!
