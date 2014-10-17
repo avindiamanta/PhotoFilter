@@ -11,6 +11,8 @@ import CoreImage
 import CoreData
 import OpenGLES
 import Photos
+import Social
+import Accounts
 
 class ViewController: UIViewController, GalleryProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 	
@@ -18,6 +20,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	@IBOutlet weak var imageViewtrailingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
+	@IBOutlet weak var tweetButton: UIBarButtonItem!
 	
 	@IBOutlet weak var filterCollectionBottomConstraint: NSLayoutConstraint!
 	
@@ -58,6 +61,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		self.resetFilterThumbnails()
 		println(self.filters.count)
 		// Do any additional setup after loading the view, typically from a nib.
+		
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -235,12 +239,34 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		})
 	}
 	
-//	func returnPhoto(image: UIImage) {
-//		self.imageView.image = image
-//		self.mainImage = image
-//		self.createThumbnail()
-//		self.resetFilterThumbnails()
-//		self.filterCollectionView.reloadData()
-//	}
+	func sendTweet(image: UIImage) {
+		if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+			let controller = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+			controller.setInitialText("TEST")
+			controller.addImage(image)
+			controller.completionHandler = { (result:SLComposeViewControllerResult) -> Void in
+				switch result {
+					case SLComposeViewControllerResult.Cancelled:
+						NSLog("result: cancelled")
+					case SLComposeViewControllerResult.Done:
+						NSLog("result: done")
+					}
+				}
+			self.presentViewController(controller, animated: true, completion: { () -> Void in
+				println("Success")
+			})
+			
+		} else {
+			println("Fail")
+		}
+	}
+	
+	@IBAction func tweetButtonTapped(sender: AnyObject) {
+		if self.imageView.image != nil {
+			self.sendTweet(self.imageView.image!)
+		}
+		
+	}
+	
 }
 

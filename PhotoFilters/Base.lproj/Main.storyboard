@@ -87,7 +87,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="n5w-xa-T9l"/>
+                    <navigationItem key="navigationItem" id="n5w-xa-T9l">
+                        <barButtonItem key="leftBarButtonItem" title="Tweet" id="z8o-Xt-cO1">
+                            <connections>
+                                <action selector="tweetButtonTapped:" destination="BYZ-38-t0r" id="5UJ-Zj-XmK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="filterCollectionBottomConstraint" destination="mF8-g3-jGl" id="6Yp-Os-L6F"/>
                         <outlet property="filterCollectionView" destination="fM7-VR-CkL" id="OIL-kX-I5V"/>
@@ -96,6 +102,7 @@
                         <outlet property="imageViewLeadingConstraint" destination="XDq-li-VsM" id="Noo-rn-kHK"/>
                         <outlet property="imageViewtrailingConstraint" destination="CbO-Fe-Z7R" id="nPn-8D-BZn"/>
                         <outlet property="photoButton" destination="N7J-6a-U26" id="o13-wC-yXk"/>
+                        <outlet property="tweetButton" destination="z8o-Xt-cO1" id="71R-Uh-lOq"/>
                         <segue destination="hfR-Ir-OU1" kind="presentation" identifier="SHOW_GALLERY" id="Rw2-8J-9X1"/>
                         <segue destination="JAh-Ir-i9h" kind="presentation" identifier="SHOW_PHOTO" id="R8c-W4-yZq"/>
                         <segue destination="WPd-4j-tg3" kind="presentation" identifier="SHOW_CAMERA" id="H0k-LA-yyg"/>
@@ -125,7 +132,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyx-Hx-yum">
-                                <rect key="frame" x="21" y="467" width="49" height="30"/>
+                                <rect key="frame" x="21" y="442" width="49" height="30"/>
                                 <state key="normal" title="Accept">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -134,11 +141,11 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qMy-xD-nzW">
-                                <rect key="frame" x="21" y="505" width="50" height="75"/>
+                                <rect key="frame" x="21" y="480" width="50" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="6LS-hO-vc9"/>
-                                    <constraint firstAttribute="height" constant="75" id="em0-9D-dtw"/>
+                                    <constraint firstAttribute="height" constant="100" id="em0-9D-dtw"/>
                                 </constraints>
                             </imageView>
                         </subviews>
