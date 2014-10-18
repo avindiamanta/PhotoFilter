@@ -250,7 +250,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	func sendTweet(image: UIImage) {
 		if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 			let controller = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-			controller.setInitialText("TEST")
+			controller.setInitialText("Check out my qwesome photo")
 			controller.addImage(image)
 			controller.completionHandler = { (result:SLComposeViewControllerResult) -> Void in
 				switch result {
@@ -258,6 +258,13 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 						NSLog("result: cancelled")
 					case SLComposeViewControllerResult.Done:
 						NSLog("result: done")
+//						let alertController = UIAlertController(title: nil, message: "Tweet Successful!", preferredStyle: UIAlertControllerStyle.Alert)
+//						let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (action) -> Void in
+//							alertController.dismissViewControllerAnimated(true, completion: nil)
+//						}
+//						
+//						alertController.addAction(okAction)
+//						self.presentViewController(alertController, animated: true, completion: nil)
 					}
 				}
 			self.presentViewController(controller, animated: true, completion: { () -> Void in
