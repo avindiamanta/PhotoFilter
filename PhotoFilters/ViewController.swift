@@ -57,7 +57,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 		var myEAGLContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
 		self.context = CIContext(EAGLContext: myEAGLContext, options: options)
 		
-		var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+		var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		var seeder = CoreDataSeeder(context: appDelegate.managedObjectContext!)
 		self.filters = fetchFilters()!
 		if self.filters.isEmpty {
@@ -142,13 +142,13 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "SHOW_GALLERY") {
-			let destinationGalleryVC = segue.destinationViewController as GalleryViewController
+			let destinationGalleryVC = segue.destinationViewController as! GalleryViewController
 			destinationGalleryVC.delegate = self
 		} else if (segue.identifier == "SHOW_PHOTO") {
-			let destinationPhotoVC = segue.destinationViewController as PhotosViewController
+			let destinationPhotoVC = segue.destinationViewController as! PhotosViewController
 			destinationPhotoVC.delegate = self
 		} else if (segue.identifier == "SHOW_CAMERA") {
-			let destinationCameraVC = segue.destinationViewController as AVFoundationCameraViewController
+			let destinationCameraVC = segue.destinationViewController as! AVFoundationCameraViewController
 			destinationCameraVC.delegate = self
 		}
 	}
@@ -171,7 +171,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 	}
 	
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = self.filterCollectionView.dequeueReusableCellWithReuseIdentifier("FILTER_CELL", forIndexPath: indexPath) as FilterCollectionViewCell
+		let cell = self.filterCollectionView.dequeueReusableCellWithReuseIdentifier("FILTER_CELL", forIndexPath: indexPath) as! FilterCollectionViewCell
 		var filterThumbnail = self.filterThumbnails![indexPath.row]
 		if filterThumbnail.filteredThumbnail != nil {
 			cell.filterImageView.image = filterThumbnail.filteredThumbnail
@@ -189,7 +189,7 @@ class ViewController: UIViewController, GalleryProtocol, UINavigationControllerD
 
 	func fetchFilters() -> [Filter]? {
 		var fetchRequest = NSFetchRequest(entityName: "Filter")
-		var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+		var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		var context = appDelegate.managedObjectContext
 		
 		var error: NSError?

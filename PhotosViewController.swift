@@ -38,7 +38,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 		self.assetFetchResult = PHAsset.fetchAssetsWithOptions(nil)
 		
 		var scale = UIScreen.mainScreen().scale
-		var flowLayout = self.colectionView.collectionViewLayout as UICollectionViewFlowLayout
+		var flowLayout = self.colectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		
 		var cellSize = flowLayout.itemSize
 		self.assetCellSize = CGSizeMake(cellSize.width, cellSize.height)
@@ -46,7 +46,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 		var pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchCollectionView:")
 		self.colectionView.addGestureRecognizer(pinchGesture)
 		
-		self.flowLayout = self.colectionView.collectionViewLayout as UICollectionViewFlowLayout
+		self.flowLayout = self.colectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		
     }
 	
@@ -55,12 +55,12 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 	}
 	
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = self.colectionView.dequeueReusableCellWithReuseIdentifier("PHOTO_CELL", forIndexPath: indexPath) as PhotoCollectionViewCell
+		let cell = self.colectionView.dequeueReusableCellWithReuseIdentifier("PHOTO_CELL", forIndexPath: indexPath) as! PhotoCollectionViewCell
 		
 		var currentTag = cell.tag + 1
 		cell.tag = currentTag
 		
-		var asset = self.assetFetchResult[indexPath.row] as PHAsset
+		var asset = self.assetFetchResult[indexPath.row] as! PHAsset
 		self.imageManager.requestImageForAsset(asset, targetSize: self.assetCellSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (image, info) -> Void in
 			if cell.tag == currentTag {
 				cell.imageView.image = image
@@ -71,7 +71,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		self.imageManager.requestImageForAsset(self.assetFetchResult[indexPath.row] as PHAsset, targetSize: self.assetCellSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (image, info) -> Void in
+		self.imageManager.requestImageForAsset(self.assetFetchResult[indexPath.row] as! PHAsset, targetSize: self.assetCellSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (image, info) -> Void in
 				self.delegate!.didTapOnItem(image)
 			}
 		self.dismissViewControllerAnimated(true, completion: nil)	

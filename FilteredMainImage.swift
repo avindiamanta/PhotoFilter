@@ -42,7 +42,7 @@ class FilteredMainImage {
 			imageFilter.setValue(image, forKey: kCIInputImageKey)
 			
 			//Generate results
-			var result = imageFilter.valueForKey(kCIOutputImageKey) as CIImage
+			var result = imageFilter.valueForKey(kCIOutputImageKey) as! CIImage
 			var extent = result.extent()
 			var imageRef = self.gpuContext.createCGImage(result, fromRect: extent)
 			self.filter = imageFilter

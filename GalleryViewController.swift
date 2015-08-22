@@ -38,12 +38,12 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 		var image3 = UIImage(named: "photo3.jpg")
 		
 		for (var i = 0; i < 10; i++) {
-			self.images.append(image1)
-			self.images.append(image2)
-			self.images.append(image3)
+			self.images.append(image1!)
+			self.images.append(image2!)
+			self.images.append(image3!)
 		}
 		
-		self.flowLayout = self.collectionView.collectionViewLayout as UICollectionViewFlowLayout
+		self.flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		
 		var pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchCollectionView:")
 		self.collectionView.addGestureRecognizer(pinchGesture)
@@ -61,7 +61,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 	}
 
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("GALLERY_CELL", forIndexPath: indexPath) as CollectionViewCell
+		let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("GALLERY_CELL", forIndexPath: indexPath) as! CollectionViewCell
 		cell.imageView.image = self.images[indexPath.row]
 		return cell
 	}

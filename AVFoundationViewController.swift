@@ -55,7 +55,7 @@ class AVFoundationCameraViewController: UIViewController {
 		
 		var device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
 		var error : NSError?
-		var input = AVCaptureDeviceInput.deviceInputWithDevice(device, error: &error) as AVCaptureDeviceInput!
+		var input = AVCaptureDeviceInput.deviceInputWithDevice(device, error: &error) as! AVCaptureDeviceInput!
 		if input == nil {
 			println("bad!")
 		}
@@ -97,7 +97,7 @@ class AVFoundationCameraViewController: UIViewController {
 			var data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
 			var image = UIImage(data: data)
 			self.capturePreviewImageView.image = image
-			println(image.size)
+			println(image!.size)
 			self.acceptPhotoButton.hidden = false
 		})
 		
